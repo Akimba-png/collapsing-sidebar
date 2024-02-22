@@ -1,14 +1,31 @@
 :root {
+  --app-background-color: #e2e8f0;
+  --background-color: #ffffffde;
+  --text-color: #8e9aaa;
+  --border-color: #eaeff4;
+  --logo-color: #0000b4;
+
+  --hover-background-color: #f1f5f9;
+  --hover-text-color: #223146;
+  --active-background-color: #f0f2ff;
+  --active-text-color: #0000b4;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 100px 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  color: var(--text-color);
+  background-color: var(--app-background-color);
 }
