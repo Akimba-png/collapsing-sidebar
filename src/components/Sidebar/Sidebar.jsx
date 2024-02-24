@@ -3,6 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/logo.png'
+import { DELAY } from '../../const';
 
 const routes = [
     { title: 'Home', icon: 'fas-solid fa-house', path: '/' },
@@ -25,6 +26,15 @@ export default class Sidebar extends React.Component {
         this.state = {
             isOpened: true,
         };
+
+        this.navListRef = React.createRef();
+        this.userListRef = React.createRef();
+    }
+
+    componentDidMount() {
+        const navItems = this.navListRef.current.children;
+        const userItems = this.userListRef.current.children;
+        this.addAnimationDelay(navItems, userItems);
     }
 
     toggleSidebar = () => {
@@ -34,6 +44,15 @@ export default class Sidebar extends React.Component {
     goToRoute = (path) => {
         console.log(`going to "${path}"`);
     };
+
+    addAnimationDelay(navList, userList) {
+        for (let i = 0; i < navList.length; i++) {
+            navList[i].style.animationDelay = (DELAY.NavList + i * DELAY.Step) + 's';
+            if (userList[i]) {
+                userList[i].style.animationDelay = (DELAY.UserList + i * DELAY.Step) + 's';
+            }
+        }
+    }
 
     render() {
         const { isOpened } = this.state;
@@ -54,7 +73,7 @@ export default class Sidebar extends React.Component {
                     <FontAwesomeIcon icon='angle-right' />
                 </button>
 
-                <div className='sidebar__nav-list'>
+                <div className='sidebar__nav-list' ref={ this.navListRef }>
                     {
                         routes.map((route) => (
                             <div className="sidebar__nav-item" key={ route.title } onClick={ () => this.goToRoute(route.path)} tabIndex={0} >
@@ -65,7 +84,7 @@ export default class Sidebar extends React.Component {
                     }
                 </div>
 
-                <div>
+                <div ref={ this.userListRef }>
                     {
                         bottomRoutes.map((route) => (
                             <div className="sidebar__user-item" key={ route.title } onClick={ () => this.goToRoute(route.path) } tabIndex={0} >
