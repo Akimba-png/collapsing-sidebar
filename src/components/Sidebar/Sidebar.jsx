@@ -60,6 +60,7 @@ export default class Sidebar extends React.Component {
 
         return (
             <div className={ containerClassnames }>
+                <h1 className="visually-hidden">Sidebar panel</h1>
                 <div className="sidebar__logo">
                     <img
                         src={ logo }
@@ -67,18 +68,19 @@ export default class Sidebar extends React.Component {
                         width="35"
                         height="35"
                     />
-                    <span className='sidebar__title'>TensorFlow</span>
+                    <span className="sidebar__title">TensorFlow</span>
                 </div>
-                <button className='sidebar__button' onClick={ this.toggleSidebar }>
+                <button className="sidebar__button" onClick={ this.toggleSidebar }>
                     <FontAwesomeIcon icon='angle-right' />
+                    <span className="visually-hidden">{isOpened ? 'close' : 'open'}</span>
                 </button>
 
-                <div className='sidebar__nav-list' ref={ this.navListRef }>
+                <div className="sidebar__nav-list" ref={ this.navListRef }>
                     {
                         routes.map((route) => (
                             <div className="sidebar__nav-item" key={ route.title } onClick={ () => this.goToRoute(route.path)} tabIndex={0} >
                                 <FontAwesomeIcon icon={ route.icon } />
-                                <span className='sidebar__title'>{ route.title }</span>
+                                <span className="sidebar__title">{ route.title }</span>
                             </div>
                         ))
                     }
@@ -89,7 +91,7 @@ export default class Sidebar extends React.Component {
                         bottomRoutes.map((route) => (
                             <div className="sidebar__user-item" key={ route.title } onClick={ () => this.goToRoute(route.path) } tabIndex={0} >
                                 <FontAwesomeIcon icon={ route.icon } />
-                                <span className='sidebar__title'>{ route.title }</span>
+                                <span className="sidebar__title">{ route.title }</span>
                             </div>
                         ))
                     }
